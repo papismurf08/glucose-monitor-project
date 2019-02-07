@@ -12,7 +12,8 @@ public class GlucoseMonitor {
     @NotNull
     @Size(min=1, message = "Description must not be empty")
     private String description;
-    private int cheeseId;
+
+    private int gmId;
     private static int nextId = 1;
 
     public GlucoseMonitor(String name, String description) {
@@ -22,16 +23,16 @@ public class GlucoseMonitor {
     }
 
     public GlucoseMonitor() {
-        cheeseId = nextId;
+        gmId = nextId;
         nextId++;
     }
 
-    public int getCheeseId() {
-        return cheeseId;
+    public int getGlucoseMonitorId() {
+        return gmId;
     }
 
-    public void setCheeseId(int cheeseId) {
-        this.cheeseId = cheeseId;
+    public void setGlucoseMonitorId(int gmId) {
+        this.gmId = gmId;
     }
 
     public String getName() {

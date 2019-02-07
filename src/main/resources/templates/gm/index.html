@@ -8,7 +8,7 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<p th:unless="${cheeses} and ${cheeses.size()}">no cheese (unfortunately)</p>
+<p th:unless="${gmdata} and ${gmdata.size()}"></p>
 
 <table class="table">
     <tr>
@@ -16,9 +16,9 @@
         <th>Description</th>
     </tr>
 
-    <tr th:each="cheese : ${cheeses}">
-        <td th:text="${cheese.name}"></td>
-        <td th:text="${cheese.description}"></td>
+    <tr th:each="gm : ${gmdata}">
+        <td th:text="${gm.name}"></td>
+        <td th:text="${gm.description}"></td>
     </tr>
 
 </table>

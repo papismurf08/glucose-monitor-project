@@ -8,13 +8,13 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <form method="post">
-    <div th:each="cheese : ${cheeses}" class="checkbox">
-        <input type="checkbox" name="cheeseIds" th:value="${cheese.cheeseId}" th:id="${cheese.cheeseId}"/>
-        <label th:for="${cheese.cheeseId}" th:text="${cheese.name}"></label>
+    <div th:each="gm : ${gmdata}" class="checkbox">
+        <input type="checkbox" name="gmIds" th:value="${gm.gmId}" th:id="${gm.gmId}"/>
+        <label th:for="${gm.gmId}" th:text="${gm.name}"></label>
         <br />
     </div>
 
-    <input type="submit" value="Remove Cheese" />
+    <input type="submit" value="Remove GlucoseMonitor" />
 </form>
 
 </body>
