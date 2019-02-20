@@ -6,10 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.ArrayList;
 
@@ -22,24 +20,26 @@ public class GlucoseMonitorController {
 
         model.addAttribute("gmdata", GlucoseMonitorData.getAll());
         model.addAttribute("title", "Glucose Monitor");
-        //rather than making static changes to html file, doing this allows for dynamic changes in code
-        //meaning I can change title here in code rather than html
         return "gm/index"; //Returns index.html
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddGlucoseMonitorForm(Model model) {
+    /*@RequestMapping(value = "add", method = RequestMethod.GET)
+    public String showAddForm(Model model) {
         model.addAttribute("title", "Add Data");
         model.addAttribute("gm", new GlucoseMonitor());
-       /* adding the "gm" attribute fixes the Neither BindingResult nor plain target object
-        for bean name available as request attribute error*/
+        *//*adding the "gm" attribute fixes the Neither BindingResult nor plain target object
+        for bean name available as request attribute error*//*
+        return "gm/add";
+    }*/
+    @GetMapping("add")
+    public String showAddForm(Model model) {
+        model.addAttribute("gm", new GlucoseMonitor());
         return "gm/add";
     }
 
-    //handler to process the form
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    //Within (), this will allow us to get data off of request
-    public String processAddGlucoseMonitorForm(@ModelAttribute @Valid GlucoseMonitor newGlucoseMonitor, Errors errors, Model model) {
+    //@RequestMapping(value = "add", method = RequestMethod.POST)
+    @PostMapping("add")
+    public String processAddForm(@ModelAttribute @Valid GlucoseMonitor newGlucoseMonitor, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Data");
@@ -50,7 +50,6 @@ public class GlucoseMonitorController {
 
         GlucoseMonitorData.add(newGlucoseMonitor);
 
-        //Redirect to any root level directory relative to chosen value in @RequestMapping
         return "redirect:";
     }
 

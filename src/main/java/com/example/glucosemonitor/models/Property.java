@@ -1,8 +1,5 @@
 package com.example.glucosemonitor.models;
 
-import lombok.Data;
-
-@Data
 public class Property {
 
     private final String id;
@@ -10,6 +7,7 @@ public class Property {
     private final Type type;
 
     public static enum Type {
-        WEIGHT, BLOODSUGAR // Max, Min, Avg
+        WEIGHT, BLOODSUGAR //Max,Min,Avg
     }
+
 }

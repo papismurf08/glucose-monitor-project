@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
+//@Data
 public class GlucoseMonitor {
 
     @NotNull
@@ -31,5 +31,29 @@ public class GlucoseMonitor {
         gmId = nextId;
         nextId++;
 
+    }
+
+    public int getGlucoseMonitorId() {
+        return gmId;
+    }
+
+    public void setGlucoseMonitorId(int gmId) {
+        this.gmId = gmId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
