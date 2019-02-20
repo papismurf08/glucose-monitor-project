@@ -13,7 +13,9 @@ public class GlucoseMonitor {
     @Size(min=1, message = "Description must not be empty")
     private String description;
 
-    private int gmId;
+    public int gmId;
+    /*By converting to public according to Spring Boot error, this resolved issue. This is done after
+    adding "gm" to modelAttribute in add GET method in controller.*/
     private static int nextId = 1;
 
     public GlucoseMonitor(String name, String description) {

@@ -7,14 +7,14 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post">
+<form method="post" >
     <div th:each="gm : ${gmdata}" class="checkbox">
         <input type="checkbox" name="gmIds" th:value="${gm.gmId}" th:id="${gm.gmId}"/>
         <label th:for="${gm.gmId}" th:text="${gm.name}"></label>
         <br />
     </div>
 
-    <input type="submit" value="Remove GlucoseMonitor" />
+    <input type="submit" value="Remove Data" />
 </form>
 
 </body>
