@@ -6,18 +6,28 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" style="max-width:600px;" th:object="${gm}">
+<form method="POST" style="max-width:600px;" th:object="${gm}">
     <!-- this pulls in item from (new GlucoseMonitor()) -->
-    <div class="form-group">
-        <label th:for="name">Name</label>
+
+    <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+            Please correct the problems below
+        </span>
+    </div>
+
+        <label for="name">Name</label>
         <input class="form-control" th:field="*{name}" />
-        <span th:errors="*{name}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="description">Description</label>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span>
+    <br/>
+
+        <label for="description">Description</label>
         <input class="form-control" th:field="*{description}" />
-        <span th:errors="*{description}" class="error"></span>
-    </div>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('description')}"
+              th:errors="*{description}">Description Error</span>
+    <br/>
     <input type="submit" value="Add Data" />
     <!-- When this value does not match value in Controller file, constructor in GlucoseMonitor greys out-->
 </form>
