@@ -39,16 +39,17 @@ public class GlucoseMonitorController {
 
     //@RequestMapping(value = "add", method = RequestMethod.POST)
     @PostMapping("add")
-    public String processAddForm(@ModelAttribute @Valid GlucoseMonitor newGlucoseMonitor, Errors errors, Model model) {
+    public String processAddForm(@Valid @ModelAttribute("gm") GlucoseMonitor glucoseInfo, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Data");
-            model.addAttribute("gm",new GlucoseMonitor());
+            //model.addAttribute("title", "Add Data");
+            //model.addAttribute("gm",new GlucoseMonitor());
             //fixes binding issue when sending empty request, but doesn't display error annotations
+            //UPDATE: adding parameter to @ModelAttribute fixed annotation issue not displaying
             return "gm/add";
         }
 
-        GlucoseMonitorData.add(newGlucoseMonitor);
+        GlucoseMonitorData.add(glucoseInfo);
 
         return "redirect:";
     }

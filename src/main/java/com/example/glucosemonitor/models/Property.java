@@ -1,5 +1,8 @@
 package com.example.glucosemonitor.models;
 
+import lombok.Data;
+
+@Data
 public class Property {
 
     private final String id;
