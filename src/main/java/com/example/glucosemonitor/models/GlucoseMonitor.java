@@ -2,58 +2,58 @@ package com.example.glucosemonitor.models;
 
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-//@Data
+
+@Data
+@Entity
 public class GlucoseMonitor {
 
-    @NotNull
-    @Size(min=3, max=15)
-    private String name;
+    //private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @Size(min=1, message = "Description must not be empty")
-    private String description;
-
-    public int gmId;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    //private int id;
     /*By converting to public according to Spring Boot error, this resolved issue. This is done after
     adding "gm" to modelAttribute in add GET method in controller.*/
-    private static int nextId = 1;
+    //UPDATE: converted back to private and no issues, yay!
+    //private static int nextId = 1;
 
-    public GlucoseMonitor(String name, String description) {
-        this(); //call the default constructor for the given class
+    //private Date placedAt;
+
+    /*@NotNull
+    @Size(min=3, max=15)
+    private String name;*/
+    private LogType type;
+
+    @NotBlank(message = "Enter glucose level")
+    private String glucose;
+
+    @NotBlank(message = "Enter insulin level")
+    private String insulin;
+
+    @NotBlank(message = "Enter carbohydrates")
+    private String carbs;
+
+    private String note;
+
+    //private Property type;
+
+    /*public GlucoseMonitor(String name, String description) {
         this.name = name;
-        this.description = description;
-    }
+        this.description = description;*/
 
-    public GlucoseMonitor() {
-        gmId = nextId;
-        nextId++;
-
-    }
-
-    public int getGlucoseMonitorId() {
-        return gmId;
-    }
-
-    public void setGlucoseMonitorId(int gmId) {
-        this.gmId = gmId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    /*public int getId() {
+        return id;
+    }*/
 }

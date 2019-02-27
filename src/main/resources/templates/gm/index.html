@@ -4,6 +4,10 @@
 
 <body class="container">
 
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="Logout"/>
+</form>
+
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
@@ -14,11 +18,13 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Weight</th>
     </tr>
 
     <tr th:each="gm : ${gmdata}">
         <td th:text="${gm.name}"></td>
         <td th:text="${gm.description}"></td>
+        <td th:text="${gm.weight}"></td>
     </tr>
 
 </table>
