@@ -8,9 +8,9 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <form method="post" >
-    <div th:each="gm : ${gmdata}" class="checkbox">
-        <input type="checkbox" name="gmIds" th:value="${gm.id}" th:id="${gm.id}"/>
-        <label th:for="${gm.id}" th:text="${gm.name}"></label>
+    <div th:each="create : ${stats}" class="checkbox">
+        <input type="checkbox" name="createIds" th:value="${create.id}" th:id="${create.id}"/>
+        <label th:for="${create.id}" th:text="${create.glucose}"></label>
         <br />
     </div>
 

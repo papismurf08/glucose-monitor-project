@@ -6,13 +6,12 @@
 <body class="container">
 <h1 th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: navigation"></nav>
+<!--<nav th:replace="fragments :: navigation"></nav>-->
+<nav th:fragment="navigation">
+    <a href="/create">Home</a>
+</nav>
 
-<form method="POST" th:action="@{/logout}" id="logoutForm">
-    <input type="submit" value="Logout" />
-</form>
-
-<form th:method="POST" style="max-width:600px;" th:object="${gm}">
+<form th:method="POST" style="max-width:600px;" th:object="${create}">
     <!-- this pulls in item from (new GlucoseMonitor()) -->
 
     <div th:if="${#fields.hasErrors()}">
@@ -27,13 +26,13 @@
               th:if="${#fields.hasErrors('name')}"
               th:errors="*{name}">Name Error</span>
     <br/>-->
-        <label for="type">Log Type</label>
+        <!--<label for="type">Log Type</label>
         <select field="*{type}">
             <option th:each="logType : ${logTypes}"
                     th:text="${logType.name}"
                     th:value="${logType}"></option>
         </select>
-    <br/>
+    <br/>-->
 
         <label for="glucose">Glucose</label>
         <input class="form-control" th:field="*{glucose}" />
@@ -63,9 +62,22 @@
                th:errors="*{note}">Note Error</span>
     <br/>
 
+    <div class="form-group">
+        <label for="categoryId">Log</label>
+        <select name="categoryId">
+            <option th:each="category : ${categories}"
+                    th:text="${category.name}"
+                    th:value="${category.id}"></option>
+        </select>
+    </div>
+
     <input type="submit" value="Add Data" />
     <!-- When this value does not match value in Controller file, constructor in GlucoseMonitor greys out-->
 </form>
+
+<!--<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="Logout" />
+</form>-->
 
 </body>
 </html>

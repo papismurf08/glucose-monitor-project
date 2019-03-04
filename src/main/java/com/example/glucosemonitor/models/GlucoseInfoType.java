@@ -1,6 +1,6 @@
 package com.example.glucosemonitor.models;
 
-public enum LogType {
+public enum GlucoseInfoType {
 
     GLUCOSE ("Glucose"),
     CARBS ("Carbs"),
@@ -11,12 +11,7 @@ public enum LogType {
 
     private final String name;
 
-    LogType(String name) {
+    GlucoseInfoType(String name) {
         this.name = name;
     }
-
-    public String getName() {
-        return name;
-    }
-
 }

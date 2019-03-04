@@ -23,11 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
+                /*.authorizeRequests()
+                    .antMatchers("/", "/home").permitAll()
+                    .anyRequest().access("hasRole('ROLE_USER')")*/
                 .authorizeRequests()
-                    .antMatchers("/design", "/orders")
+                    .antMatchers("/create", "/category")
                         .access("hasRole('ROLE_USER')")
-                    .antMatchers("/", "/**").access("permitAll")
-
+                    .antMatchers("/","/**").permitAll()
+                    .anyRequest().authenticated()
+                //this last line seems to fix forbidden issue
                 .and()
                     .formLogin()
                         .loginPage("/login")
@@ -36,9 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                         .logoutSuccessUrl("/")
 
-                .and()
+                /*.and()
                     .csrf()
-                        .ignoringAntMatchers("/h2-console/**")
+                        .ignoringAntMatchers("/h2-console/**")*/
 
                 .and()
                     .headers()
