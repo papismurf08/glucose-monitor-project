@@ -24,5 +24,4 @@ public class Category {
     @JoinColumn(name = "category_id")
     private List<CreateRecord> stats = new ArrayList<>();
 
-    //public Category() {}
 }

@@ -1,13 +1,17 @@
 package com.example.glucosemonitor.models;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
 @Entity
+//@Table(name = "create_record")
 public class CreateRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -16,7 +20,8 @@ public class CreateRecord implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Enter glucose level")
+    //@Digits(integer=3, fraction=0, message = "Enter glucose level")
+    @NotNull(message = "Enter glucose level")
     private String glucose;
 
     @NotBlank(message = "Enter insulin level")
