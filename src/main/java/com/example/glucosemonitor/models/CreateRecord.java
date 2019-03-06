@@ -5,13 +5,13 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
 @Entity
-//@Table(name = "create_record")
 public class CreateRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,6 +19,8 @@ public class CreateRecord implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    private Date placedAt;
 
     //@Digits(integer=3, fraction=0, message = "Enter glucose level")
     @NotNull(message = "Enter glucose level")
@@ -36,5 +38,9 @@ public class CreateRecord implements Serializable {
     private Category category;
 
     //public CreateRecord() {}
+    @PrePersist
+    void placedAt() {
+        this.placedAt = new Date();
+    }
 
 }
